@@ -47,15 +47,17 @@ export function AccessibilityMenu() {
       setS(next);
     } catch {
       applySettings(DEFAULTS);
-    } finally {
-      hydrated.current = true;
     }
   }, []);
 
   useEffect(() => {
-    // Skip the first run so we don't overwrite localStorage with DEFAULTS
-    // before the hydration effect above has restored saved settings.
-    if (!hydrated.current) return;
+    // Both effects run in the same commit on mount, so we can't rely on the
+    // hydration effect above setting hydrated=true first. Skip the very first
+    // run here (where s is still DEFAULTS), then resume normal persist.
+    if (!hydrated.current) {
+      hydrated.current = true;
+      return;
+    }
     applySettings(s);
     try {
       window.localStorage.setItem(KEY, JSON.stringify(s));

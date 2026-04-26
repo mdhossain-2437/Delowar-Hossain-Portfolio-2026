@@ -47,7 +47,8 @@ export function StackConstellation({ items }: { items: StackItem[] }) {
       const wasReduced = reduceMotionRef.current;
       reduceMotionRef.current = e.matches;
       if (wasReduced && !e.matches) {
-        // resume animation
+        // resume animation; cancel any stale frame first to avoid duplicate loops
+        cancelAnimationFrame(raf);
         raf = requestAnimationFrame(tick);
       }
     };
