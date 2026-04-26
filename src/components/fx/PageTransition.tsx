@@ -16,7 +16,7 @@ export function PageTransition() {
     }
     setActive(true);
     if (timerRef.current) window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => setActive(false), 720);
+    timerRef.current = window.setTimeout(() => setActive(false), 840);
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };

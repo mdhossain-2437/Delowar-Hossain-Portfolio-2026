@@ -43,7 +43,7 @@ export function NewsletterForm() {
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
-          if (status === "error") setStatus("idle");
+          if (status !== "idle" && status !== "submitting") setStatus("idle");
         }}
         required
         className="flex-1 rounded-md border border-[var(--color-line)]/60 bg-[var(--color-bg)]/60 px-4 py-3 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-dim)] focus:border-[var(--color-accent)] focus:outline-none"
