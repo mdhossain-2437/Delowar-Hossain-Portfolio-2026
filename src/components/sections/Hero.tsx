@@ -36,10 +36,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.5em] text-[var(--color-accent)]"
+          className="mb-8 flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.5em] text-[var(--color-accent)]"
         >
           <span className="size-1.5 animate-pulse rounded-full bg-[var(--color-accent)]" />
-          Web Developer & AI Enthusiast
+          Website Developer · Full-Stack · AI Engineer
         </motion.div>
 
         <h1 className="font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] font-bold uppercase tracking-tighter md:text-[15vw] lg:text-[12.5vw] xl:text-[200px]">
@@ -72,9 +72,10 @@ export function Hero() {
           className="mt-10 grid grid-cols-1 items-end gap-6 md:grid-cols-3"
         >
           <p className="md:col-span-2 max-w-xl text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
-            Crafting high-performance digital experiences where{" "}
-            <span className="text-[var(--color-fg)]">code</span> meets{" "}
-            <span className="text-[var(--color-accent)]">intelligence</span>.
+            Premium <span className="text-[var(--color-fg)]">creative developer in Bangladesh</span>{" "}
+            building immersive digital products — blending creative development,
+            full-stack architecture, and{" "}
+            <span className="text-[var(--color-accent)]">AI-native thinking</span>.
           </p>
           <div className="flex items-center justify-start gap-4 md:justify-end">
             <div className="text-[10px] uppercase tracking-[0.4em] text-[var(--color-muted)]">

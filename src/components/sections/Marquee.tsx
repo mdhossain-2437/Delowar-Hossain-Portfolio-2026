@@ -1,18 +1,24 @@
-type Props = { items?: string[] };
+type Props = { items?: string[]; reverse?: boolean; slow?: boolean };
 
 const defaultItems = [
-  "Available for Freelance",
-  "Generative AI Specialist",
-  "Full Stack Developer",
+  "Website Developer in Bangladesh",
+  "Full-Stack AI Systems",
+  "Immersive Web Experiences",
   "Lenis · Framer · GSAP",
-  "Joypurhat → Anywhere",
+  "Available · Q3 2026",
 ];
 
-export function Marquee({ items = defaultItems }: Props) {
+export function Marquee({ items = defaultItems, reverse, slow }: Props) {
   const list = [...items, ...items, ...items, ...items];
   return (
     <div className="relative overflow-hidden border-y border-[var(--color-line-soft)] bg-[var(--color-bg)]">
-      <div className="flex w-max marquee-track gap-12 whitespace-nowrap py-6">
+      <div
+        className={
+          "flex w-max gap-12 whitespace-nowrap py-6 marquee-track " +
+          (slow ? "marquee-track--slow " : "") +
+          (reverse ? "marquee-track--reverse" : "")
+        }
+      >
         {list.map((it, i) => (
           <span
             key={i}
