@@ -73,6 +73,7 @@ export function ContactForm() {
           Submitting opens your mail client with a pre-filled draft.
         </p>
         <MagneticButton
+          type="submit"
           cursorLabel="Send"
           className="bg-[var(--color-accent)] text-[var(--color-accent-ink)] hover:bg-white"
         >

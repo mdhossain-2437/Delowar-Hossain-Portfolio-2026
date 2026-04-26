@@ -11,6 +11,7 @@ type Props = {
   cursorLabel?: string;
   strength?: number;
   external?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 export function MagneticButton({
@@ -21,6 +22,7 @@ export function MagneticButton({
   cursorLabel,
   strength = 0.25,
   external,
+  type = "button",
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
 
@@ -67,7 +69,7 @@ export function MagneticButton({
       onClick={onClick}
       data-cursor={cursorLabel}
       className={`${baseClass} ${className}`}
-      type="button"
+      type={type}
     >
       {children}
     </button>
