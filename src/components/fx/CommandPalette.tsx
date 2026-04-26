@@ -274,12 +274,13 @@ export function CommandPalette() {
                 </div>
                 {items.map((a) => {
                   cursor += 1;
-                  const isActive = cursor === active;
+                  const idx = cursor;
+                  const isActive = idx === active;
                   return (
                     <button
                       key={a.id}
                       onClick={a.run}
-                      onMouseEnter={() => setActive(cursor)}
+                      onMouseEnter={() => setActive(idx)}
                       className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left transition-colors ${
                         isActive
                           ? "bg-[var(--color-card)]"
