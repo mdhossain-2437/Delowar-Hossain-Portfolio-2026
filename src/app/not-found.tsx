@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PixelHunt } from "@/components/sections/PixelHunt";
 
 const lines = [
   "$ delowar.dev/locate <route>",
@@ -56,6 +57,7 @@ export default function NotFound() {
             ))}
           </div>
         </div>
+        <div className="flex flex-col gap-4">
         <div className="rounded-[var(--radius-card)] border border-[var(--color-line)]/40 bg-[var(--color-elevated)]/60 p-6 font-mono text-sm">
           <div className="flex items-center gap-2 border-b border-[var(--color-line-soft)] pb-3 text-[10px] uppercase tracking-[0.3em] text-[var(--color-muted)]">
             <span className="size-2.5 rounded-full bg-rose-400" />
@@ -74,6 +76,8 @@ export default function NotFound() {
               <span className="inline-block h-4 w-2 animate-pulse bg-[var(--color-accent)]" />
             </div>
           </div>
+        </div>
+        <PixelHunt />
         </div>
       </div>
     </section>

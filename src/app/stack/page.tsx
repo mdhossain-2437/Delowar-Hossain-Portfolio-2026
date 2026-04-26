@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { LetsTalk } from "@/components/sections/LetsTalk";
+import { StackConstellation } from "@/components/sections/StackConstellation";
 import { stackItems } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -25,6 +26,10 @@ export default function StackPage() {
         title="STACK"
         description="The tools, editors, frameworks and services I lean on every day. Curated over six years of shipping immersive web and AI-native products."
       />
+
+      <section className="mx-auto max-w-[var(--container-page)] px-6 pb-12 md:px-10">
+        <StackConstellation items={stackItems} />
+      </section>
 
       <section className="mx-auto max-w-[var(--container-page)] px-6 pb-24 md:px-10">
         <div className="reveal mb-10 flex flex-wrap gap-2">

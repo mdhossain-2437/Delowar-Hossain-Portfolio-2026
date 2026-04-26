@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { articles, identity } from "@/lib/data";
 import { LetsTalk } from "@/components/sections/LetsTalk";
 import { ShareMenu } from "@/components/ui/ShareMenu";
+import { ReadingProgress } from "@/components/fx/ReadingProgress";
+import { TableOfContents } from "@/components/fx/TableOfContents";
 
 type Params = { slug: string };
 
@@ -34,6 +36,7 @@ export default async function ArticlePage({
 
   return (
     <>
+      <ReadingProgress targetSelector="article#blog-body" />
       <header className="mx-auto max-w-3xl px-6 pt-32 md:px-0 md:pt-44">
         <Link
           href="/blog"
@@ -72,7 +75,8 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <article className="mx-auto mt-16 max-w-3xl px-6 pb-20 text-base leading-[1.85] text-[var(--color-muted)] md:px-0 md:text-[17px]">
+      <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 px-6 pb-20 md:px-10 xl:grid-cols-[1fr_220px]">
+      <article id="blog-body" className="text-base leading-[1.85] text-[var(--color-muted)] md:text-[17px]">
         <p className="reveal">
           The interfaces we build are getting weirder. We&apos;re grafting
           probabilistic systems onto deterministic UIs, and the seams show
@@ -119,6 +123,8 @@ export default async function ArticlePage({
         </p>
         <p className="reveal mt-12 text-[var(--color-fg)]">— Delowar</p>
       </article>
+      <TableOfContents containerSelector="article#blog-body" />
+      </div>
 
       <LetsTalk />
     </>
