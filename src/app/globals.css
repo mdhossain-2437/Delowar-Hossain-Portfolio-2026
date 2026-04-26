@@ -25,6 +25,38 @@
   --radius-card: 14px;
 }
 
+/* Light theme */
+:root[data-theme="light"] {
+  --color-bg: #f6f5ef;
+  --color-surface: #efede4;
+  --color-elevated: #ffffff;
+  --color-card: #ffffff;
+  --color-footer: #ebe8da;
+  --color-line: #b9bca7;
+  --color-line-soft: rgba(60, 60, 40, 0.16);
+  --color-accent: #6e8a00;
+  --color-accent-ink: #ffffff;
+  --color-fg: #131313;
+  --color-muted: #4f5240;
+  --color-dim: rgba(20, 20, 20, 0.5);
+}
+
+/* Synthwave theme */
+:root[data-theme="synthwave"] {
+  --color-bg: #15071f;
+  --color-surface: #1d0a2c;
+  --color-elevated: #25113a;
+  --color-card: #2c1645;
+  --color-footer: #1a0826;
+  --color-line: #ff5cc8;
+  --color-line-soft: rgba(255, 92, 200, 0.3);
+  --color-accent: #ff5cc8;
+  --color-accent-ink: #19011d;
+  --color-fg: #fff5fb;
+  --color-muted: #d8a9d6;
+  --color-dim: rgba(255, 220, 244, 0.55);
+}
+
 * {
   border-color: var(--color-line-soft);
 }
@@ -73,11 +105,16 @@ html.lenis body {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
 }
 
+:root[data-theme="light"] .grain::before {
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+}
+
 /* Hero radial vignette */
 .hero-vignette {
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(195, 244, 0, 0.06), transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(195, 244, 0, 0.03), transparent 60%);
+    radial-gradient(ellipse at 50% 30%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--color-accent) 4%, transparent), transparent 60%);
 }
 
 /* Marquee */
@@ -91,6 +128,12 @@ html.lenis body {
 }
 .marquee-track {
   animation: marquee 38s linear infinite;
+}
+.marquee-track--slow {
+  animation-duration: 60s;
+}
+.marquee-track--reverse {
+  animation-direction: reverse;
 }
 
 /* Scroll-triggered reveal helper */
@@ -123,7 +166,7 @@ html.lenis body {
 
 /* Gradient hero word fill */
 .text-gradient-hero {
-  background: linear-gradient(180deg, #ffffff 0%, #e6e6dc 50%, #b1b59c 100%);
+  background: linear-gradient(180deg, var(--color-fg) 0%, color-mix(in srgb, var(--color-fg) 85%, transparent) 50%, color-mix(in srgb, var(--color-muted) 70%, transparent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -132,4 +175,77 @@ html.lenis body {
 /* Letter scramble base */
 .scramble-char {
   display: inline-block;
+}
+
+/* Soft accent ring (used by cards on hover) */
+.glow-accent {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 40%, transparent),
+    0 0 40px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+/* Konami / synthwave gridfloor backdrop */
+:root[data-theme="synthwave"] body::after,
+.konami body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(transparent 60%, rgba(255, 92, 200, 0.08)),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(255, 92, 200, 0.08) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgba(255, 92, 200, 0.08) 38px 39px);
+  mask-image: linear-gradient(to bottom, transparent 30%, black 80%);
+}
+
+/* Section divider */
+.divider {
+  height: 1px;
+  background: var(--color-line-soft);
+}
+
+/* Pretty scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-line) 40%, var(--color-bg));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Page transition overlay */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: var(--color-accent);
+  transform-origin: top;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+
+/* Tilted card 3D base */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }

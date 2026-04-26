@@ -3,9 +3,19 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { TopNav } from "@/components/layout/TopNav";
 import { SideNav } from "@/components/layout/SideNav";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { CustomCursor } from "@/components/fx/CustomCursor";
 import { RevealObserver } from "@/components/fx/RevealObserver";
+import { ScrollProgress } from "@/components/fx/ScrollProgress";
+import { LoadingSplash } from "@/components/fx/LoadingSplash";
+import { ConsoleArt } from "@/components/fx/ConsoleArt";
+import { KonamiCode } from "@/components/fx/KonamiCode";
+import { CommandPalette } from "@/components/fx/CommandPalette";
+import { ThemeProvider } from "@/components/fx/ThemeProvider";
+import { SoundProvider } from "@/components/fx/SoundProvider";
+import { ToastProvider } from "@/components/fx/ToastProvider";
+import { JsonLd } from "@/components/fx/JsonLd";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,28 +39,28 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://delowarhossain.dev"),
   title: {
-    default: "Delowar Hossain — Web Developer & AI Enthusiast",
+    default: "Delowar Hossain — Creative Developer · Full-Stack · AI Engineer",
     template: "%s · Delowar.dev",
   },
   description:
-    "Crafting high-performance digital experiences where code meets intelligence. Portfolio of MD Delowar Hossain — full-stack developer and generative AI specialist.",
+    "Premium website developer in Bangladesh building immersive digital products. Creative development, full-stack architecture, and AI-native thinking by MD Delowar Hossain.",
   keywords: [
     "Delowar Hossain",
     "MD Delowar Hossain",
-    "Web Developer",
+    "Creative Developer Bangladesh",
+    "Website Developer Bangladesh",
+    "Full-Stack Developer",
     "AI Engineer",
     "Generative AI",
-    "Next.js",
-    "Portfolio",
-    "Bangladesh",
-    "Full Stack Developer",
+    "Next.js portfolio",
+    "Awwwards",
   ],
   authors: [{ name: "MD Delowar Hossain", url: "https://delowarhossain.dev" }],
   creator: "MD Delowar Hossain",
   openGraph: {
-    title: "Delowar Hossain — Web Developer & AI Enthusiast",
+    title: "Delowar Hossain — Creative Developer · Full-Stack · AI Engineer",
     description:
-      "Crafting high-performance digital experiences where code meets intelligence.",
+      "Premium website developer in Bangladesh building immersive digital products — creative development, full-stack architecture, AI-native thinking.",
     url: "https://delowarhossain.dev",
     siteName: "Delowar.dev",
     locale: "en_US",
@@ -58,9 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Delowar Hossain — Web Developer & AI Enthusiast",
+    title: "Delowar Hossain — Creative Developer",
     description:
-      "Crafting high-performance digital experiences where code meets intelligence.",
+      "Immersive web, full-stack systems, AI integration. Creative developer in Bangladesh.",
     creator: "@delowarhossain",
   },
   alternates: { canonical: "/" },
@@ -70,7 +80,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${grotesk.variable}`}
+      data-theme="dark"
+      suppressHydrationWarning
+    >
       <head>
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
@@ -79,12 +94,25 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--color-bg)] text-[var(--color-fg)] grain antialiased overflow-x-clip">
-        <SmoothScroll />
-        <CustomCursor />
-        <RevealObserver />
-        <TopNav />
-        <SideNav />
-        <main className="relative">{children}</main>
+        <ThemeProvider>
+          <SoundProvider>
+            <ToastProvider>
+              <LoadingSplash />
+              <SmoothScroll />
+              <CustomCursor />
+              <RevealObserver />
+              <ScrollProgress />
+              <ConsoleArt />
+              <KonamiCode />
+              <CommandPalette />
+              <JsonLd />
+              <TopNav />
+              <SideNav />
+              <main className="relative">{children}</main>
+              <SiteFooter />
+            </ToastProvider>
+          </SoundProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

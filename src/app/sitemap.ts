@@ -7,12 +7,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const routes = [
     "",
-    "/work",
     "/about",
+    "/work",
+    "/case-studies",
     "/services",
-    "/resume",
+    "/process",
+    "/pricing",
+    "/lab",
+    "/stack",
+    "/uses",
+    "/awards",
+    "/now",
+    "/inspiration",
+    "/faq",
     "/blog",
+    "/resume",
     "/contact",
+    "/map",
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: now,
@@ -27,6 +38,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const caseStudyRoutes = projects.map((p) => ({
+    url: `${base}/case-studies/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+
   const articleRoutes = articles.map((a) => ({
     url: `${base}/blog/${a.slug}`,
     lastModified: now,
@@ -34,5 +52,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...routes, ...projectRoutes, ...articleRoutes];
+  return [...routes, ...projectRoutes, ...caseStudyRoutes, ...articleRoutes];
 }

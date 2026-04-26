@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { articles } from "@/lib/data";
+import { articles, identity } from "@/lib/data";
 import { LetsTalk } from "@/components/sections/LetsTalk";
+import { ShareMenu } from "@/components/ui/ShareMenu";
 
 type Params = { slug: string };
 
@@ -41,8 +42,14 @@ export default async function ArticlePage({
         >
           ← Journal
         </Link>
-        <div className="mt-10 text-[11px] uppercase tracking-[0.4em] text-[var(--color-accent)]">
-          {article.date} · {article.readTime}
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
+          <div className="text-[11px] uppercase tracking-[0.4em] text-[var(--color-accent)]">
+            {article.date} · {article.readTime}
+          </div>
+          <ShareMenu
+            title={article.title}
+            url={`https://${identity.domain}/blog/${article.slug}`}
+          />
         </div>
         <h1 className="mt-6 font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
           {article.title}
