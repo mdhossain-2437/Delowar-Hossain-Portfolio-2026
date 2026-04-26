@@ -6,6 +6,8 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { SoundToggle } from "@/components/ui/SoundToggle";
 import { CommandHint } from "@/components/ui/CommandHint";
+import { AccessibilityMenu } from "@/components/ui/AccessibilityMenu";
+import { LiveStatus } from "@/components/ui/LiveStatus";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -82,8 +84,10 @@ export function TopNav() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
+            <LiveStatus />
             <CommandHint />
             <SoundToggle />
+            <AccessibilityMenu />
             <ThemeToggle />
             <MagneticButton
               href="/contact"

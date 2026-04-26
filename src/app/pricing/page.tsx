@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { LetsTalk } from "@/components/sections/LetsTalk";
+import { PricingCalculator } from "@/components/sections/PricingCalculator";
 import { pricingTiers } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -148,6 +149,8 @@ export default function PricingPage() {
           </table>
         </div>
       </section>
+
+      <PricingCalculator />
 
       <LetsTalk />
     </>

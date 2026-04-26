@@ -15,9 +15,13 @@ export function LetsTalk() {
   return (
     <footer
       id="contact"
-      className="relative bg-[var(--color-footer)] pt-24 md:pt-36"
+      className="relative overflow-hidden bg-[var(--color-footer)] pt-24 md:pt-36"
     >
-      <div className="mx-auto max-w-[var(--container-page)] px-6 md:px-10">
+      <div
+        aria-hidden
+        className="gradient-mesh pointer-events-none absolute -inset-x-32 -top-40 h-[600px] opacity-50"
+      />
+      <div className="relative mx-auto max-w-[var(--container-page)] px-6 md:px-10">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
           <div className="md:col-span-7">
             <div className="text-[11px] uppercase tracking-[0.4em] text-[var(--color-muted)] reveal">
