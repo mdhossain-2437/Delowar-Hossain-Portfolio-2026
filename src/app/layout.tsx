@@ -12,6 +12,7 @@ import { LoadingSplash } from "@/components/fx/LoadingSplash";
 import { ConsoleArt } from "@/components/fx/ConsoleArt";
 import { KonamiCode } from "@/components/fx/KonamiCode";
 import { CommandPalette } from "@/components/fx/CommandPalette";
+import { PageTransition } from "@/components/fx/PageTransition";
 import { ThemeProvider } from "@/components/fx/ThemeProvider";
 import { SoundProvider } from "@/components/fx/SoundProvider";
 import { ToastProvider } from "@/components/fx/ToastProvider";
@@ -105,6 +106,7 @@ export default function RootLayout({
               <ConsoleArt />
               <KonamiCode />
               <CommandPalette />
+              <PageTransition />
               <JsonLd />
               <TopNav />
               <SideNav />

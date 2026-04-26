@@ -16,6 +16,7 @@ const groups = [
     items: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
+      { label: "Journey", href: "/journey" },
       { label: "Now", href: "/now" },
       { label: "Uses", href: "/uses" },
     ],
@@ -45,7 +46,10 @@ const groups = [
     title: "Curation",
     items: [
       { label: "Blog", href: "/blog" },
+      { label: "Newsletter", href: "/newsletter" },
       { label: "Inspiration", href: "/inspiration" },
+      { label: "Press", href: "/press" },
+      { label: "Press kit", href: "/press-kit" },
       { label: "Visual sitemap", href: "/map" },
     ],
   },

@@ -233,15 +233,73 @@ html.lenis body {
   }
 }
 
-/* Page transition overlay */
-.page-transition {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
+/* Page transition overlay (3 sweeping bars + label) */
+.page-transition__bar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100%;
   background: var(--color-accent);
-  transform-origin: top;
-  transform: scaleY(0);
-  pointer-events: none;
+  transform: translateY(101%);
+  transform-origin: bottom;
+  will-change: transform;
+}
+.page-transition__bar--2 {
+  background: var(--color-fg);
+  transition-delay: 80ms;
+}
+.page-transition__bar--3 {
+  background: var(--color-bg);
+  transition-delay: 160ms;
+}
+.page-transition__label {
+  position: absolute;
+  inset: auto 0 24px 0;
+  text-align: center;
+  color: var(--color-bg);
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.page-transition[data-active="true"] .page-transition__bar {
+  animation: pt-sweep 720ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.page-transition[data-active="true"] .page-transition__bar--2 {
+  animation-delay: 60ms;
+}
+.page-transition[data-active="true"] .page-transition__bar--3 {
+  animation-delay: 120ms;
+}
+.page-transition[data-active="true"] .page-transition__label {
+  animation: pt-label 720ms ease forwards;
+}
+@keyframes pt-sweep {
+  0% {
+    transform: translateY(101%);
+  }
+  45% {
+    transform: translateY(0%);
+  }
+  55% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-101%);
+  }
+}
+@keyframes pt-label {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45%,
+  55% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition[data-active="true"] .page-transition__bar,
+  .page-transition[data-active="true"] .page-transition__label {
+    animation: none;
+  }
 }
 
 /* Tilted card 3D base */

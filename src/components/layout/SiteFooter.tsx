@@ -2,6 +2,7 @@ import Link from "next/link";
 import { identity, social } from "@/lib/data";
 import { TimeBadge } from "@/components/ui/TimeBadge";
 import { CopyEmail } from "@/components/ui/CopyEmail";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 const cols = [
   {
@@ -33,7 +34,16 @@ const cols = [
       { label: "Stack", href: "/stack" },
       { label: "Uses", href: "/uses" },
       { label: "Awards", href: "/awards" },
+      { label: "Journey", href: "/journey" },
       { label: "Inspiration", href: "/inspiration" },
+    ],
+  },
+  {
+    title: "More",
+    items: [
+      { label: "Newsletter", href: "/newsletter" },
+      { label: "Press", href: "/press" },
+      { label: "Press kit", href: "/press-kit" },
       { label: "Visual sitemap", href: "/map" },
     ],
   },
@@ -50,7 +60,7 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer className="relative mt-24 border-t border-[var(--color-line-soft)] bg-[var(--color-footer)]/80">
-      <div className="mx-auto grid max-w-[var(--container-page)] gap-10 px-6 py-16 md:grid-cols-[1.4fr_repeat(3,1fr)] md:px-10">
+      <div className="mx-auto grid max-w-[var(--container-page)] gap-10 px-6 py-16 md:grid-cols-[1.4fr_repeat(4,1fr)] md:px-10">
         <div className="flex flex-col gap-5">
           <Link
             href="/"
@@ -107,13 +117,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {identity.fullName} — Curating the future
           </div>
           <TimeBadge />
-          <a
-            href="#hero"
-            data-cursor="Top"
-            className="transition-colors hover:text-[var(--color-accent)]"
-          >
-            Back to top ↑
-          </a>
+          <BackToTop />
         </div>
       </div>
     </footer>

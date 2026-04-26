@@ -29,7 +29,11 @@ export function ShareMenu({
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`,
       email: `mailto:?subject=${t}&body=${u}`,
     };
-    window.open(targets[id], "_blank", "noopener,noreferrer");
+    if (id === "email") {
+      window.location.assign(targets[id]);
+    } else {
+      window.open(targets[id], "_blank", "noopener,noreferrer");
+    }
     setOpen(false);
   };
 

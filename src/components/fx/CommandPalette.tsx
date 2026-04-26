@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { useSound } from "./SoundProvider";
 import { useToast } from "./ToastProvider";
-import { social } from "@/lib/data";
+import { social, projects, articles } from "@/lib/data";
 
 type Action = {
   id: string;
@@ -75,6 +75,38 @@ export function CommandPalette() {
       nav("/resume", "Résumé", "assignment"),
       nav("/contact", "Contact · Hire me", "alternate_email"),
       nav("/map", "Visual sitemap", "hub", "Discover"),
+      nav("/journey", "Journey · Timeline", "timeline", "Discover"),
+      nav("/press", "Press · Mentions", "newspaper", "Discover"),
+      nav("/press-kit", "Press kit · Brand assets", "folder_zip", "Discover"),
+      nav("/newsletter", "Newsletter · Build Notes", "outgoing_mail", "Discover"),
+      ...projects.map(
+        (p): Action => ({
+          id: `proj:${p.slug}`,
+          label: p.title,
+          hint: p.tagline,
+          group: "Projects",
+          icon: "rocket_launch",
+          keywords: `${p.title} ${p.tagline} ${p.category} ${p.role} ${p.stack.join(" ")}`,
+          run: () => {
+            router.push(`/case-studies/${p.slug}`);
+            close();
+          },
+        })
+      ),
+      ...articles.map(
+        (a): Action => ({
+          id: `article:${a.slug}`,
+          label: a.title,
+          hint: `${a.category} · ${a.readTime}`,
+          group: "Articles",
+          icon: "menu_book",
+          keywords: `${a.title} ${a.excerpt} ${a.category}`,
+          run: () => {
+            router.push(`/blog/${a.slug}`);
+            close();
+          },
+        })
+      ),
       {
         id: "theme:dark",
         label: "Theme · Dark",
