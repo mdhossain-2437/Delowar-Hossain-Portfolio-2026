@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { ParticleField } from "@/components/fx/ParticleField";
 
 export function Hero() {
   const ref = useRef<HTMLElement | null>(null);
@@ -26,6 +27,18 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-[var(--color-accent)]/5 blur-[160px]" />
         <div className="absolute -right-40 bottom-10 h-[520px] w-[520px] rounded-full bg-[#1c4a4a]/30 blur-[200px]" />
+      </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-50 mix-blend-screen"
+      >
+        <ParticleField
+          density={0.00009}
+          color="rgba(195, 244, 0, 0.6)"
+          link={120}
+          speed={0.15}
+          reactToPointer={false}
+        />
       </div>
 
       <motion.div

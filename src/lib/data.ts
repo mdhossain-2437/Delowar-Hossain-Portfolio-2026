@@ -984,6 +984,39 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "performance-budgets-as-creative-constraint",
+    date: "Apr 14, 2026",
+    title: "Performance budgets as a creative constraint",
+    excerpt:
+      "How a 90kb gzip ceiling kills bad design decisions before they're made — and why the best art directors I work with started asking for them.",
+    cover:
+      "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=1600&q=80",
+    readTime: "6 min read",
+    category: "Performance",
+  },
+  {
+    slug: "agentic-interfaces-are-not-chat",
+    date: "Mar 02, 2026",
+    title: "Agentic interfaces are not chat",
+    excerpt:
+      "A taxonomy of interaction patterns for autonomous AI: status windows, intervention seams, side-channel observability and why the chatbox UX is a local maximum.",
+    cover:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80",
+    readTime: "10 min read",
+    category: "AI · UX",
+  },
+  {
+    slug: "shipping-from-joypurhat",
+    date: "Feb 06, 2026",
+    title: "Shipping from Joypurhat",
+    excerpt:
+      "Async-first delivery rituals for a four-timezone studio operating on a 30 Mbps connection — what works, what breaks, what the West gets wrong.",
+    cover:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
+    readTime: "8 min read",
+    category: "Studio",
+  },
+  {
     slug: "designing-for-non-deterministic-systems",
     date: "Mar 18, 2025",
     title: "Designing for non-deterministic systems",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { LetsTalk } from "@/components/sections/LetsTalk";
+import { ParticleField } from "@/components/fx/ParticleField";
 import { labExperiments } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -24,6 +25,34 @@ export default function LabPage() {
         title="LAB"
         description="A working sandbox of interactive prototypes, browser experiments and AI tools. Some are toys. Some become production patterns. All of them push what a single browser tab can do."
       />
+
+      <section className="mx-auto max-w-[var(--container-page)] px-6 pb-12 md:px-10">
+        <div className="reveal relative mb-12 overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-line)]/40 bg-[var(--color-bg)]/80">
+          <div className="relative h-[420px] w-full">
+            <ParticleField
+              density={0.00018}
+              color="rgba(195, 244, 0, 0.85)"
+              link={140}
+              speed={0.25}
+              reactToPointer
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[var(--color-bg)]/80 via-transparent to-[var(--color-bg)]/40" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6 md:p-8">
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-accent)]">
+                ● Live demo · Featured
+              </span>
+              <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold uppercase md:text-5xl">
+                Particle Field — react to your cursor
+              </h2>
+              <p className="max-w-2xl text-sm text-[var(--color-muted)] md:text-base">
+                Real-time canvas simulation. Move your pointer through it and watch each
+                node nudge, recover and re-thread its links. ~150 particles, &lt;1ms per
+                frame.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-[var(--container-page)] px-6 pb-24 md:px-10">
         <div className="reveal mb-8 grid gap-3 text-[10px] uppercase tracking-[0.3em] text-[var(--color-muted)] sm:grid-cols-3">
