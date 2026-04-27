@@ -34,22 +34,30 @@ export function AccessibilityMenu() {
   const [open, setOpen] = useState(false);
   const [s, setS] = useState<Settings>(DEFAULTS);
   const ref = useRef<HTMLDivElement | null>(null);
+  const hydrated = useRef(false);
   const { toast } = useToast();
 
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(KEY);
       const next = raw ? { ...DEFAULTS, ...JSON.parse(raw) } : DEFAULTS;
+      applySettings(next);
       // Hydration-safe localStorage read; can't run during render.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setS(next);
-      applySettings(next);
     } catch {
       applySettings(DEFAULTS);
     }
   }, []);
 
   useEffect(() => {
+    // Both effects run in the same commit on mount, so we can't rely on the
+    // hydration effect above setting hydrated=true first. Skip the very first
+    // run here (where s is still DEFAULTS), then resume normal persist.
+    if (!hydrated.current) {
+      hydrated.current = true;
+      return;
+    }
     applySettings(s);
     try {
       window.localStorage.setItem(KEY, JSON.stringify(s));

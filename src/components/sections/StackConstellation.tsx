@@ -43,6 +43,16 @@ export function StackConstellation({ items }: { items: StackItem[] }) {
 
     const mql = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     reduceMotionRef.current = !!mql?.matches;
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      const wasReduced = reduceMotionRef.current;
+      reduceMotionRef.current = e.matches;
+      if (wasReduced && !e.matches) {
+        // resume animation; cancel any stale frame first to avoid duplicate loops
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
+      }
+    };
+    mql?.addEventListener?.("change", onMotionChange);
 
     let w = 0;
     let h = 0;
@@ -96,19 +106,26 @@ export function StackConstellation({ items }: { items: StackItem[] }) {
       return null;
     };
 
+    let hoveredNode: Node | null = null;
     const onMove = (e: PointerEvent) => {
       const r = canvas.getBoundingClientRect();
       pointer.x = e.clientX - r.left;
       pointer.y = e.clientY - r.top;
       pointer.active = true;
-      const h = findHover(pointer.x, pointer.y);
-      setHover(h);
+      const next = findHover(pointer.x, pointer.y);
+      if (next !== hoveredNode) {
+        hoveredNode = next;
+        setHover(next);
+      }
     };
     const onLeave = () => {
       pointer.active = false;
       pointer.x = -9999;
       pointer.y = -9999;
-      setHover(null);
+      if (hoveredNode !== null) {
+        hoveredNode = null;
+        setHover(null);
+      }
     };
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerleave", onLeave);
@@ -197,6 +214,7 @@ export function StackConstellation({ items }: { items: StackItem[] }) {
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("resize", onResize);
+      mql?.removeEventListener?.("change", onMotionChange);
     };
   }, [items, groups]);
 

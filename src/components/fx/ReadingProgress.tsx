@@ -10,7 +10,11 @@ export function ReadingProgress({ targetSelector = "article" }: { targetSelector
       const el = document.querySelector<HTMLElement>(targetSelector);
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const total = rect.height + rect.top - window.innerHeight * 0.2;
+      const total = rect.height;
+      if (total <= 0) {
+        setPct(1);
+        return;
+      }
       const scrolled = -rect.top + window.innerHeight * 0.2;
       const ratio = Math.min(1, Math.max(0, scrolled / total));
       setPct(ratio);
